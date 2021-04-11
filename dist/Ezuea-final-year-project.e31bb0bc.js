@@ -164,7 +164,7 @@ function showResult(e) {
       polarizationCoefficient = formulaParameters.polarizationCoefficient;
   antennaDistance = receiverEffiency / 4 * Math.PI * Math.sqrt(impedenceMismatch * receiverEffiency * receiverPower * receiverGain * transmitterGain * polarizationCoefficient / thresholdPower);
   var resultBox = document.getElementById("result");
-  resultBox.innerText = Math.round((antennaDistance + Number.EPSILON) * 1000) / 1000;
+  resultBox.innerText = antennaDistance.toFixed(3);
   resultBox.tabIndex = 2;
   resultBox.className = "new-result";
 }

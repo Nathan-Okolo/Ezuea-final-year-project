@@ -347,13 +347,19 @@ input[type="number"],
   .friis-wrapper {
     width: 100%;
   }
-  @media screen and (max-width: 415px) {
-    .friis-wrapper {
-      padding: 10px;
-    }
-    .formula-meaning-list li span:nth-child(2) {
-      font-size: 0.8rem;
-    }
+}
+@media screen and (max-width: 415px) {
+  .friis-wrapper {
+    padding: 10px;
+  }
+  .formula-meaning-list li span:nth-child(2) {
+    font-size: 0.8rem;
+  }
+  .result-box {
+    width: 100%;
+  }
+  .result-box h4 {
+    font-size: 0.8rem;
   }
   @media screen and (max-width: 280px) {
     .friis-header p,
