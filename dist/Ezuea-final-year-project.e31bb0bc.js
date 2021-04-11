@@ -164,7 +164,7 @@ function showResult(e) {
       polarizationCoefficient = formulaParameters.polarizationCoefficient;
   antennaDistance = receiverEffiency / 4 * Math.PI * Math.sqrt(impedenceMismatch * receiverEffiency * receiverPower * receiverGain * transmitterGain * polarizationCoefficient / thresholdPower);
   var resultBox = document.getElementById("result");
-  resultBox.innerText = antennaDistance.toFixed(3);
+  resultBox.innerText = Math.round((antennaDistance + Number.EPSILON) * 1000) / 1000;
   resultBox.tabIndex = 2;
   resultBox.className = "new-result";
 }
@@ -196,7 +196,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "2018" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "11259" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
