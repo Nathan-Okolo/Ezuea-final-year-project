@@ -1,0 +1,23 @@
+{
+  "name": "friis_equation",
+  "version": "1.0.0",
+  "description": "Solve the distance between two antennas",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nathan-Okolo/Ezuea-final-year-project.git"
+  },
+  "author": "Elliot Yibaebi; Nathan Okolo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nathan-Okolo/Ezuea-final-year-project/issues"
+  },
+  "homepage": "https://github.com/Nathan-Okolo/Ezuea-final-year-project#readme",
+  "dependencies": {
+    "date-fns": "^2.20.0",
+    "parcel-bundler": "^1.12.5"
+  }
+}

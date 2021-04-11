@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quadratic Solver</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/Ezuea-final-year-project.9ad09f98.css">
+
+    <script>MathJax = {
+  loader: {
+    load: ["input/asciimath", "output/chtml"]
+  }
+};</script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script type="text/javascript" id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/startup.js"></script>
+  <script src="/Ezuea-final-year-project.9ad09f98.js"></script></head>
+
+  <body>
+    <div class="friis-wrapper">
+      <main class="friis-body">
+        <section class="section-1-wrapper">
+          <header class="friis-header">
+            <h1>Friis <span>Equation</span></h1>
+            <button class="btn-1">
+              <a href="#calculator">Go to calculator</a>
+            </button>
+            <p>
+              Friis equation calculates the received power from an antenna at
+              some distance given a transmission frequency and antenna gains.
+            </p>
+          </header>
+          <p>
+            The subject of the equation can be changed to find the distance R,
+            between two antennas as shown below;
+          </p>
+          <p>
+            `R= lambda/4pi * sqrt((Pr * Gr * Gt ast lambda ast gamma ast
+            rho)/(Pth)`
+          </p>
+
+          <p>where,</p>
+          <ul class="formula-meaning-list">
+            <li><span>`lambda`</span> = <span>Receiver Efficiency</span></li>
+            <li>
+              <span>`gamma`</span> = <span>Impedance Mismatch Coefficient</span>
+            </li>
+            <li>
+              <span>`rho`</span> =
+              <span> Polarization Coefficient</span>
+            </li>
+            <li>
+              <span>P<sub>th</sub></span> = <span>Chip Threshold Power</span>
+            </li>
+            <li>
+              <span>P<sub>r</sub></span> = <span>Receiver Power</span>
+            </li>
+            <li>
+              <span>G<sub>r</sub></span> = <span>Receiver Antenna Gain</span>
+            </li>
+            <li>
+              <span>G<sub>t</sub></span> = <span>Transmitter Antenna Gain</span>
+            </li>
+          </ul>
+        </section>
+
+        <form id="calculator">
+          <h2>Friis Distance Calculator</h2>
+          <p>
+            Enter the correct values of the variables in the input boxes
+            provided below to calculate the distance R, between antennas.
+          </p>
+          <p class="note-board">N/B : Enter only numbers</p>
+          <section class="calculator-inputs">
+            <aside class="input-item">
+              <label for="receiverEffiency">
+                <span>Receiver Efficiency</span> (<span>`lambda`</span>)
+              </label>
+              <input type="number" name="receiverEffiency" id="receiverEffiency" min="0" placeholder="Efficiency" required="">
+            </aside>
+            <aside class="input-item">
+              <label for="impedenceMismatch">
+                <span>Impedance Mismatch Coefficient</span>
+                (<span>`gamma`</span>)
+              </label>
+              <input type="number" name="impedenceMismatch" id="impedenceMismatch" min="0" placeholder="Impedance" required="">
+            </aside>
+
+            <aside class="input-item">
+              <label for="receiverPower">
+                <span>Receiver Power</span> (<span><span>P<sub>r</sub></span></span>)
+              </label>
+              <input type="number" name="receiverPower" id="receiverPower" min="0" placeholder="Power Received" required="">
+            </aside>
+            <aside class="input-item">
+              <label for="receiverGain">
+                <span>Receiver Antenna Gain</span> (<span>G<sub>r</sub></span>)
+              </label>
+              <input type="number" name="receiverGain" id="receiverGain" min="0" placeholder="Receiver Gain" required="">
+            </aside>
+            <aside class="input-item">
+              <label for="transmitterGain">
+                <span>Transmitter Antenna Gain</span> (<span>G<sub>t</sub></span>)
+              </label>
+              <input type="number" name="transmitterGain" id="transmitterGain" min="0" placeholder="Transmitter Gain" required="">
+            </aside>
+            <aside class="input-item">
+              <label for="polarizationCoefficient">
+                <span>Polarization Coefficient</span> (<span>`rho`</span>)
+              </label>
+              <input type="number" name="polarizationCoefficient" id="polarizationCoefficient" min="0" placeholder="Polarization Coefficient" required="">
+            </aside>
+            <aside class="input-item select-dropdown">
+              <label for="select-pth">
+                <span>P<sub>th</sub></span> value
+              </label>
+              <select name="select-pth" id="select-pth" required="">
+                <option value="2">2</option>
+                <option value="0.010">0.010</option>
+                <option value="0.020">0.020</option>
+                <option value="0.030">0.030</option>
+              </select>
+            </aside>
+          </section>
+          <button type="submit" class="btn-1 view-result">View Result</button>
+          <section class="result-box">
+            <h4>Distance, R: <span id="result">?</span></h4>
+          </section>
+        </form>
+      </main>
+    </div>
+
+    <script src="/Ezuea-final-year-project.e31bb0bc.js"></script>
+  </body>
+</html>

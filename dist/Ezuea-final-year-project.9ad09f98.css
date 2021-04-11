@@ -1,0 +1,388 @@
+@import url("https://use.fontawesome.com/releases/v5.13.0/css/all.css");
+
+* {
+  font-family: "poppins";
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  color: #2e2e52;
+  text-align: center;
+}
+
+body {
+  background: url("https://media.istockphoto.com/vectors/cute-doodle-school-pattern-seamless-background-with-school-and-and-vector-id1004266784?s=612x612");
+  background-color: #eee;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #2e2e52;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #2e2e52;
+}
+
+::placeholder {
+  color: rgba(98, 82, 181, 0.6);
+}
+
+input:invalid:focus {
+  border: 2px solid #df2935;
+}
+
+.friis-wrapper {
+  scroll-behavior: smooth;
+  position: absolute;
+  height: 100vh;
+  width: 80%;
+  max-width: 1380px;
+  left: 50%;
+  overflow-y: scroll;
+  transform: translateX(-50%);
+  backdrop-filter: blur(16px);
+  background-color: rgb(46, 46, 82, 0.15);
+  padding: 20px 30px;
+  padding-left: 50px;
+  border: 1px solid #2e2e52;
+  border-radius: 5px;
+  -moz-box-shadow: inset 0 0 10px #2e2e52;
+  -webkit-box-shadow: inset 0 0 10px #2e2e52;
+  box-shadow: inset 0 0 10px #2e2e52;
+}
+
+h1,
+h2 {
+  margin-bottom: 30px;
+}
+
+h1 {
+  text-transform: uppercase;
+  margin-top: 20px;
+  font-size: 2.2rem;
+  text-align: center;
+}
+
+h1 span {
+  color: #6252b5;
+}
+
+h2 {
+  margin-top: 30px;
+}
+
+.friis-header p,
+.friis-body p:first-of-type {
+  margin: 0 auto;
+  width: 75%;
+  text-align: center;
+  font-size: 0.9rem;
+  margin-bottom: 40px;
+}
+
+.friis-body p {
+  font-size: 0.9rem;
+  margin-bottom: 40px;
+}
+
+.formula-meaning-list {
+  list-style-type: none;
+  width: 40%;
+  min-width: fit-content;
+  margin: 0 auto;
+}
+
+.formula-meaning-list li {
+  margin-bottom: 8px;
+  text-align: left;
+}
+.formula-meaning-list li span:first-of-type {
+  display: inline-block;
+  width: 25px;
+}
+.formula-meaning-list li span:nth-child(2) {
+  margin-left: 5px;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+.btn-1 {
+  margin-bottom: 40px;
+  outline: none;
+  border: none;
+}
+.btn-1 a,
+.btn-1.view-result {
+  text-decoration: none;
+  background: #df2935;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.7rem 0.9rem;
+  border: 0;
+  transition: all 0.15s;
+  border-radius: 5px;
+  width: auto;
+  position: relative;
+}
+
+.btn-1 a:before,
+.btn-1.view-result::before {
+  content: "\f063";
+  font-family: "Font Awesome 5 Free";
+  position: absolute;
+  left: 85%;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 5%;
+  opacity: 0;
+  font-weight: 900;
+  backface-visibility: hidden;
+}
+
+.btn-1 a:hover,
+.btn-1.view-result:hover {
+  transition: all 0.15s;
+  border-radius: 5px;
+  box-shadow: 0px 3px 10px #df2935;
+  padding-right: 2.5rem;
+}
+.btn-1 a:hover::before,
+.btn-1.view-result:hover::before {
+  opacity: 1;
+  transition: all 0.5s;
+}
+
+.btn-1.view-result {
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.btn-1.view-result {
+  background-color: #2e2e52;
+  height: fit-content;
+  box-shadow: 0px 3px 10px #2e2e52;
+}
+
+.btn-1.view-result:hover {
+  box-shadow: 0px 3px 10px #2e2e52;
+}
+
+.btn-1.view-result::before {
+  left: 82%;
+  content: "\f1ec";
+  padding-right: 3.5rem;
+}
+
+/* Calculator container styles */
+
+#calculator,
+.section-1-wrapper {
+  margin-top: 2px;
+  padding: 20px;
+  padding-bottom: 40px;
+  background-color: white;
+  position: relative;
+  border-radius: 10px;
+}
+
+#calculator {
+  margin-top: 30px;
+}
+
+#calculator .input-item,
+#calculator .input-item input {
+  text-align: left;
+}
+
+#calculator:before,
+#calculator:after,
+.section-1-wrapper:before,
+.section-1-wrapper:after {
+  z-index: -1;
+  position: absolute;
+  content: "";
+  bottom: 15px;
+  left: 10px;
+  width: 50%;
+  top: 80%;
+  max-width: 300px;
+  background: #777;
+  -webkit-box-shadow: 0 15px 10px #777;
+  -moz-box-shadow: 0 15px 10px #777;
+  box-shadow: 0 15px 10px #777;
+  -webkit-transform: rotate(-3deg);
+  -moz-transform: rotate(-3deg);
+  -o-transform: rotate(-3deg);
+  -ms-transform: rotate(-3deg);
+  transform: rotate(-3deg);
+}
+#calculator:after,
+.section-1-wrapper:after {
+  -webkit-transform: rotate(3deg);
+  -moz-transform: rotate(3deg);
+  -o-transform: rotate(3deg);
+  -ms-transform: rotate(3deg);
+  transform: rotate(3deg);
+  right: 10px;
+  left: auto;
+}
+
+#calculator h2 {
+  font-size: 2rem;
+  text-align: center;
+}
+
+#calculator p {
+  font-weight: 600;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 1rem;
+  margin-bottom: 1.5em;
+}
+
+.note-board {
+  color: #df2935;
+  font-style: italic;
+}
+
+.calculator-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.input-item {
+  margin: 20px;
+}
+.input-item span,
+.input-item label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #6252b5;
+}
+
+input[type="number"],
+#select-pth {
+  display: block;
+  width: 280px;
+  height: 40px;
+  border-radius: 8px;
+  outline: none;
+  border: 2px solid #6252b5;
+  padding: 0px 8px;
+  margin-top: 8px;
+}
+
+.select-dropdown {
+  position: relative;
+}
+#select-pth {
+  appearance: none;
+  width: 100px;
+  background: transparent;
+}
+.select-dropdown select:active,
+.select-dropdown select:focus {
+  outline: none;
+}
+.select-dropdown:after {
+  content: "";
+  position: absolute;
+  top: 70%;
+  right: 20px;
+  width: 0;
+  height: 0;
+  border-top: 5px solid #6252b5;
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+}
+
+/* Result Box */
+.result-box {
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 20px;
+  width: 80%;
+  background: rgba(8, 160, 69, 0.15);
+  border: 2px solid#08a045;
+  transition: all 0.15s;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 2.8px 1.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 6.5px 5px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 20.8px 18.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
+}
+
+.result-box h4 {
+  font-size: 1.2rem;
+  margin: 0 auto;
+  color: rgba(8, 160, 69, 0.8);
+  text-align: center;
+}
+
+.result-box h4 span {
+  margin-left: 10px;
+  font-style: italic;
+}
+
+.new-result {
+  border-bottom: 2px double#2e2e52;
+}
+
+@media screen and (max-width: 520px) {
+  .friis-wrapper {
+    width: 100%;
+  }
+  @media screen and (max-width: 415px) {
+    .friis-wrapper {
+      padding: 10px;
+    }
+    .formula-meaning-list li span:nth-child(2) {
+      font-size: 0.8rem;
+    }
+  }
+  @media screen and (max-width: 280px) {
+    .friis-header p,
+    .friis-body p:first-of-type {
+      width: 100%;
+    }
+    .formula-meaning-list li span:nth-child(2) {
+      font-size: 0.7rem;
+    }
+    .formula-meaning-list li span:first-of-type {
+      font-size: 84%;
+    }
+    mjx-math {
+      font-size: 66% !important;
+      font-weight: 600 !important;
+    }
+
+    input[type="number"],
+    #select-pth {
+      display: block;
+      width: 217px;
+    }
+
+    #calculator .input-item,
+    #calculator .input-item input {
+      text-align: center;
+    }
+  }
+}
+
+
+/*# sourceMappingURL=/Ezuea-final-year-project.9ad09f98.css.map */

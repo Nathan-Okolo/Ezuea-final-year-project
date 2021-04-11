@@ -1,33 +1,54 @@
-// program to solve quadratic equation
-// installing npm module that will prompt users to input field
-const prompt = require('prompt-sync')();
+// TITLE: Friis Equation Solver
+// FOCUS: Solving the distance between two antennas
 
-let root1;
+const calculatorForm = document.getElementById("calculator");
+calculatorForm.addEventListener("submit", (e) => showResult(e));
 
-// take input from the user
-let name = prompt('Good Day user please can u tell us your name?')
-let a = prompt("Enter the Reciever power: ");
-let b = prompt("Enter the Recicever antenna gain: ");
-let c = prompt("Enter the Transmitter antenna gain: ");
-let d = prompt("Enter the Reciever efficiency: ");
-let e = prompt("Enter the Impendance mismatch coefficient: ");
-let f = prompt("Enter the Polarization coefficent between reader and tag: ");
-let g = prompt("Enter the Chip threshold power: ");
-// calculate discriminant
-let squareRoot = ((a*b*c*d*e*f)/g);
-console.log(squareRoot)
+function showResult(e) {
+  e.preventDefault();
 
-// condition for real and different roots
-if (squareRoot > 0) {
-    root = ( Math.sqrt(squareRoot));}
-    console.log(root)
-pre = d/(4*Math.PI)
-console.log(pre);
+  let inputLists = document.getElementsByTagName("input");
+  let thresholdPowerValue = document.getElementById("select-pth");
 
-// final calculations
-distanceBtwAntenna = pre * root;
-R = distanceBtwAntenna
-console.log(R)
+  let selectedThresholdPowerValue =
+    thresholdPowerValue.options[thresholdPowerValue.selectedIndex].value;
 
-// Result
-console.log 
+  const formulaParameters = {};
+  let antennaDistance = null;
+
+  formulaParameters.thresholdPower = selectedThresholdPowerValue;
+
+  for (let input of inputLists) {
+    console.log(input);
+    formulaParameters[input.name] = input.value;
+  }
+
+  const {
+    impedenceMismatch,
+    receiverEffiency,
+    thresholdPower,
+    receiverPower,
+    receiverGain,
+    transmitterGain,
+    polarizationCoefficient,
+  } = formulaParameters;
+
+  antennaDistance =
+    (receiverEffiency / 4) *
+    Math.PI *
+    Math.sqrt(
+      (impedenceMismatch *
+        receiverEffiency *
+        receiverPower *
+        receiverGain *
+        transmitterGain *
+        polarizationCoefficient) /
+        thresholdPower
+    );
+
+  const resultBox = document.getElementById("result");
+  resultBox.innerText =
+    Math.round((antennaDistance + Number.EPSILON) * 1000) / 1000;
+  resultBox.tabIndex = 2;
+  resultBox.className = "new-result";
+}
