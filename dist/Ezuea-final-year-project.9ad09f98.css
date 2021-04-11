@@ -123,7 +123,8 @@ h2 {
   border: none;
 }
 .btn-1 a,
-.btn-1.view-result {
+.btn-1.view-result,
+.btn-1.clear-all {
   text-decoration: none;
   background: #df2935;
   color: #ffffff;
@@ -138,7 +139,8 @@ h2 {
 }
 
 .btn-1 a:before,
-.btn-1.view-result::before {
+.btn-1.view-result::before,
+.btn-1.clear-all::before {
   content: "\f063";
   font-family: "Font Awesome 5 Free";
   position: absolute;
@@ -152,36 +154,50 @@ h2 {
 }
 
 .btn-1 a:hover,
-.btn-1.view-result:hover {
+.btn-1.view-result:hover,
+.btn-1.clear-all:hover {
   transition: all 0.15s;
   border-radius: 5px;
   box-shadow: 0px 3px 10px #df2935;
   padding-right: 2.5rem;
 }
 .btn-1 a:hover::before,
-.btn-1.view-result:hover::before {
+.btn-1.view-result:hover::before,
+.btn-1.clear-all:hover::before {
   opacity: 1;
   transition: all 0.5s;
 }
 
-.btn-1.view-result {
+.btn-1.view-result,
+.btn-1.clear-all {
   margin-top: 30px;
   margin-bottom: 20px;
-}
-
-.btn-1.view-result {
   background-color: #2e2e52;
   height: fit-content;
   box-shadow: 0px 3px 10px #2e2e52;
 }
 
+.btn-1.clear-all {
+  background-color: #df2935;
+  box-shadow: 0px 1px 5px #df2935;
+}
+
 .btn-1.view-result:hover {
   box-shadow: 0px 3px 10px #2e2e52;
+}
+.btn-1.clear-all:hover {
+  box-shadow: 0px 1px 5px #df2935;
 }
 
 .btn-1.view-result::before {
   left: 82%;
   content: "\f1ec";
+  padding-right: 3.5rem;
+}
+
+.btn-1.clear-all::before {
+  left: 82%;
+  content: "\f12d";
   padding-right: 3.5rem;
 }
 
@@ -349,18 +365,30 @@ input[type="number"],
   }
 }
 @media screen and (max-width: 415px) {
+  .friis-header p,
+  .friis-body p:first-of-type {
+    width: 100%;
+  }
   .friis-wrapper {
     padding: 10px;
   }
   .formula-meaning-list li span:nth-child(2) {
     font-size: 0.8rem;
   }
+
+  .btn-1.view-result,
+  .btn-1.clear-all {
+    margin: 0px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
   .result-box {
     width: 100%;
   }
   .result-box h4 {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
+
   @media screen and (max-width: 280px) {
     .friis-header p,
     .friis-body p:first-of-type {
@@ -386,6 +414,9 @@ input[type="number"],
     #calculator .input-item,
     #calculator .input-item input {
       text-align: center;
+    }
+    .result-box h4 {
+      font-size: 0.8rem;
     }
   }
 }

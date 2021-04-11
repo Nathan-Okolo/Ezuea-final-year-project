@@ -127,6 +127,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 // TITLE: Friis Equation Solver
 // FOCUS: Solving the distance between two antennas
 var calculatorForm = document.getElementById("calculator");
+var clearButton = document.getElementById("clear-all");
+clearButton.addEventListener("click", clearAllFields);
 calculatorForm.addEventListener("submit", function (e) {
   return showResult(e);
 });
@@ -167,6 +169,30 @@ function showResult(e) {
   resultBox.innerText = Math.round((antennaDistance + Number.EPSILON) * 1000) / 1000;
   resultBox.tabIndex = 2;
   resultBox.className = "new-result";
+}
+
+function clearAllFields() {
+  console.log("clicked");
+  var inputLists = document.getElementsByTagName("input");
+  var formulaParameters = {};
+
+  var _iterator2 = _createForOfIteratorHelper(inputLists),
+      _step2;
+
+  try {
+    for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+      var input = _step2.value;
+      input.value = null;
+    }
+  } catch (err) {
+    _iterator2.e(err);
+  } finally {
+    _iterator2.f();
+  }
+
+  var resultBox = document.getElementById("result");
+  resultBox.innerText = "?";
+  resultBox.className = "";
 }
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
