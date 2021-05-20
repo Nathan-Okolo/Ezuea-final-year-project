@@ -3,9 +3,18 @@
 
 const calculatorForm = document.getElementById("calculator");
 const clearButton = document.getElementById("clear-all");
+const inputLists = document.getElementsByTagName("input");
+const formDataEntries = new FormData(calculatorForm).entries();
+let errorObject = Object.fromEntries(formDataEntries);
 
 clearButton.addEventListener("click", clearAllFields);
-calculatorForm.addEventListener("submit", (e) => showResult(e));
+calculatorForm.addEventListener("submit", (e) => handleSignupFormSubmit(e));
+calculatorForm.addEventListener("change", (e) => {
+  errorObject = {};
+});
+
+const errorMessageContainer = document.createElement("p");
+errorMessageContainer.className = "error-message";
 
 function showResult(e) {
   e.preventDefault();
@@ -22,8 +31,26 @@ function showResult(e) {
   formulaParameters.thresholdPower = selectedThresholdPowerValue;
 
   for (let input of inputLists) {
-    console.log(input);
-    formulaParameters[input.name] = input.value;
+    if (
+      input.name === "polarizationCoefficient" ||
+      input.name === "impedenceMismatch"
+    ) {
+      if (
+        (input.value < 0 || input.value > 1 || !input.value) &&
+        input.name === "polarizationCoefficient"
+      ) {
+        const impedanceErrorContainer = document.getElementById(
+          "polarizationCoefficient-container"
+        );
+        const errorMessageText = document.createTextNode(
+          "Value is less than 0 or greater than 1."
+        );
+        errorMessageContainer.appendChild(errorMessageText);
+        impedanceErrorContainer.appendChild(errorMessageContainer);
+      }
+    }
+
+    // formulaParameters[input.name] = input.value;
   }
 
   const {
@@ -57,10 +84,6 @@ function showResult(e) {
 }
 
 function clearAllFields() {
-  console.log("clicked");
-  let inputLists = document.getElementsByTagName("input");
-  const formulaParameters = {};
-
   for (let input of inputLists) {
     input.value = null;
   }
@@ -68,4 +91,91 @@ function clearAllFields() {
   const resultBox = document.getElementById("result");
   resultBox.innerText = "?";
   resultBox.className = "";
+}
+
+function isEmpty(value) {
+  return value ? value : "Empty field.";
+}
+
+function isValueBetweenZeroOrOne(value) {
+  if (value < 0 || value > 1) {
+    return `Value is greater than 1 or less than 0.`;
+  } else if (value === "Empty field.") return value;
+  else return "";
+}
+
+function handleSignupFormSubmit(e) {
+  // prevent default browser behaviour
+  e.preventDefault();
+
+  const filledFormData = new FormData(calculatorForm).entries();
+  let polarizationCoefficientError = "";
+  let impedenceMismatchError = "";
+
+  const {
+    impedenceMismatch,
+    receiverEffiency,
+    thresholdPower,
+    receiverPower,
+    receiverGain,
+    transmitterGain,
+    polarizationCoefficient,
+  } = Object.fromEntries(filledFormData);
+
+  polarizationCoefficientError = isValueBetweenZeroOrOne(
+    isEmpty(polarizationCoefficient)
+  );
+  impedenceMismatchError = isValueBetweenZeroOrOne(isEmpty(impedenceMismatch));
+
+  if (
+    polarizationCoefficientError.includes("greater") ||
+    polarizationCoefficientError.includes("Empty") ||
+    !polarizationCoefficientError
+  ) {
+    const polCoeErrorMsgElement = document.querySelector(
+      ".error-message.polarizationCoefficient"
+    );
+    polCoeErrorMsgElement.innerText = polarizationCoefficientError;
+  }
+
+  if (
+    impedenceMismatchError.includes("greater") ||
+    impedenceMismatchError.includes("Empty") ||
+    !impedenceMismatchError
+  ) {
+    // select the email form field message element
+    const impedenceMismatchErrorMessageElement = document.querySelector(
+      ".error-message.impedenceMismatchError"
+    );
+    // show password error message to user
+    impedenceMismatchErrorMessageElement.innerText = impedenceMismatchError;
+  }
+
+  if (!impedenceMismatchError || !polarizationCoefficientError) {
+    console.log({
+      impedenceMismatch,
+      receiverEffiency,
+      thresholdPower,
+      receiverPower,
+      receiverGain,
+      transmitterGain,
+      polarizationCoefficient,
+    });
+    const antennaDistance =
+      (receiverEffiency / (4 * Math.PI)) *
+      Math.sqrt(
+        (impedenceMismatch *
+          receiverPower *
+          receiverGain *
+          transmitterGain *
+          polarizationCoefficient) /
+          thresholdPower
+      );
+
+    const resultBox = document.getElementById("result");
+    resultBox.innerText =
+      Math.round((antennaDistance + Number.EPSILON) * 10000) / 10000;
+    resultBox.tabIndex = 2;
+    resultBox.className = "new-result";
+  }
 }

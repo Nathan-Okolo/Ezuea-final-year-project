@@ -44,10 +44,7 @@
             The subject of the equation can be changed to find the distance R,
             between two antennas as shown below;
           </p>
-          <p>
-            `R= lambda/4pi * sqrt((Pr * Gr * Gt ast lambda ast gamma ast
-            rho)/(Pth)`
-          </p>
+          <p>`R= lambda/(4pi) * sqrt((Pr * Gr * Gt ast gamma ast rho)/(Pth)`</p>
 
           <p>where,</p>
           <ul class="formula-meaning-list">
@@ -95,7 +92,7 @@
                 required
               />
             </aside>
-            <aside class="input-item">
+            <aside class="input-item" id="impedenceMismatch-container">
               <label for="impedenceMismatch">
                 <span>Impedance Mismatch Coefficient</span>
                 (<span>`gamma`</span>)
@@ -104,10 +101,10 @@
                 type="number"
                 name="impedenceMismatch"
                 id="impedenceMismatch"
-                min="0"
-                placeholder="Impedance"
-                required
+                step="0.000000000000001"
+                placeholder="(value must be between 0 and 1)"
               />
+              <p class="error-message impedenceMismatchError"></p>
             </aside>
 
             <aside class="input-item">
@@ -153,7 +150,7 @@
                 required
               />
             </aside>
-            <aside class="input-item">
+            <aside class="input-item" id="polarizationCoefficient-container">
               <label for="polarizationCoefficient">
                 <span>Polarization Coefficient</span> (<span>`rho`</span>)
               </label>
@@ -161,20 +158,26 @@
                 type="number"
                 name="polarizationCoefficient"
                 id="polarizationCoefficient"
-                min="0"
-                placeholder="Polarization Coefficient"
-                required
+                step="0.000000000000001"
+                placeholder="(value must be between 0 and 1)"
               />
+              <p class="error-message polarizationCoefficient"></p>
             </aside>
             <aside class="input-item select-dropdown">
               <label for="select-pth">
                 <span>P<sub>th</sub></span> value
               </label>
-              <select name="select-pth" id="select-pth" required>
-                <option value="2">2</option>
-                <option value="0.010">0.010</option>
-                <option value="0.020">0.020</option>
-                <option value="0.030">0.030</option>
+              <select name="thresholdPower" id="select-pth" required>
+                <option value="" hidden>Select threshold value.</option>
+                <option value="21">NXP SL351204 ucode7</option>
+                <option value="15">NXP SL31CS1002/1202</option>
+                <option value="25">NXP MFRC522</option>
+                <option value="18">Alien Higgs 3</option>
+                <option value="15">Alien Higgs 3 SOT</option>
+                <option value="18.5">Alien Higgs 4 SOT 1</option>
+                <option value="74">Impiny Indy RS2000</option>
+                <option value="63">Impiny Indy R500</option>
+                <option value="84">Impiny Indy R2000</option>
               </select>
             </aside>
           </section>

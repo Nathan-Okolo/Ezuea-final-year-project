@@ -128,10 +128,18 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 // FOCUS: Solving the distance between two antennas
 var calculatorForm = document.getElementById("calculator");
 var clearButton = document.getElementById("clear-all");
+var inputLists = document.getElementsByTagName("input");
+var formDataEntries = new FormData(calculatorForm).entries();
+var errorObject = Object.fromEntries(formDataEntries);
 clearButton.addEventListener("click", clearAllFields);
 calculatorForm.addEventListener("submit", function (e) {
-  return showResult(e);
+  return handleSignupFormSubmit(e);
 });
+calculatorForm.addEventListener("change", function (e) {
+  errorObject = {};
+});
+var errorMessageContainer = document.createElement("p");
+errorMessageContainer.className = "error-message";
 
 function showResult(e) {
   e.preventDefault();
@@ -148,8 +156,16 @@ function showResult(e) {
   try {
     for (_iterator.s(); !(_step = _iterator.n()).done;) {
       var input = _step.value;
-      console.log(input);
-      formulaParameters[input.name] = input.value;
+
+      if (input.name === "polarizationCoefficient" || input.name === "impedenceMismatch") {
+        if ((input.value < 0 || input.value > 1 || !input.value) && input.name === "polarizationCoefficient") {
+          var impedanceErrorContainer = document.getElementById("polarizationCoefficient-container");
+          var errorMessageText = document.createTextNode("Value is less than 0 or greater than 1.");
+          errorMessageContainer.appendChild(errorMessageText);
+          impedanceErrorContainer.appendChild(errorMessageContainer);
+        }
+      } // formulaParameters[input.name] = input.value;
+
     }
   } catch (err) {
     _iterator.e(err);
@@ -172,10 +188,6 @@ function showResult(e) {
 }
 
 function clearAllFields() {
-  console.log("clicked");
-  var inputLists = document.getElementsByTagName("input");
-  var formulaParameters = {};
-
   var _iterator2 = _createForOfIteratorHelper(inputLists),
       _step2;
 
@@ -193,6 +205,65 @@ function clearAllFields() {
   var resultBox = document.getElementById("result");
   resultBox.innerText = "?";
   resultBox.className = "";
+}
+
+function isEmpty(value) {
+  return value ? value : "Empty field.";
+}
+
+function isValueBetweenZeroOrOne(value) {
+  if (value < 0 || value > 1) {
+    return "Value is greater than 1 or less than 0.";
+  } else if (value === "Empty field.") return value;else return "";
+}
+
+function handleSignupFormSubmit(e) {
+  // prevent default browser behaviour
+  e.preventDefault();
+  var filledFormData = new FormData(calculatorForm).entries();
+  var polarizationCoefficientError = "";
+  var impedenceMismatchError = "";
+
+  var _Object$fromEntries = Object.fromEntries(filledFormData),
+      impedenceMismatch = _Object$fromEntries.impedenceMismatch,
+      receiverEffiency = _Object$fromEntries.receiverEffiency,
+      thresholdPower = _Object$fromEntries.thresholdPower,
+      receiverPower = _Object$fromEntries.receiverPower,
+      receiverGain = _Object$fromEntries.receiverGain,
+      transmitterGain = _Object$fromEntries.transmitterGain,
+      polarizationCoefficient = _Object$fromEntries.polarizationCoefficient;
+
+  polarizationCoefficientError = isValueBetweenZeroOrOne(isEmpty(polarizationCoefficient));
+  impedenceMismatchError = isValueBetweenZeroOrOne(isEmpty(impedenceMismatch));
+
+  if (polarizationCoefficientError.includes("greater") || polarizationCoefficientError.includes("Empty") || !polarizationCoefficientError) {
+    var polCoeErrorMsgElement = document.querySelector(".error-message.polarizationCoefficient");
+    polCoeErrorMsgElement.innerText = polarizationCoefficientError;
+  }
+
+  if (impedenceMismatchError.includes("greater") || impedenceMismatchError.includes("Empty") || !impedenceMismatchError) {
+    // select the email form field message element
+    var impedenceMismatchErrorMessageElement = document.querySelector(".error-message.impedenceMismatchError"); // show password error message to user
+
+    impedenceMismatchErrorMessageElement.innerText = impedenceMismatchError;
+  }
+
+  if (!impedenceMismatchError || !polarizationCoefficientError) {
+    console.log({
+      impedenceMismatch: impedenceMismatch,
+      receiverEffiency: receiverEffiency,
+      thresholdPower: thresholdPower,
+      receiverPower: receiverPower,
+      receiverGain: receiverGain,
+      transmitterGain: transmitterGain,
+      polarizationCoefficient: polarizationCoefficient
+    });
+    var antennaDistance = receiverEffiency / (4 * Math.PI) * Math.sqrt(impedenceMismatch * receiverPower * receiverGain * transmitterGain * polarizationCoefficient / thresholdPower);
+    var resultBox = document.getElementById("result");
+    resultBox.innerText = Math.round((antennaDistance + Number.EPSILON) * 10000) / 10000;
+    resultBox.tabIndex = 2;
+    resultBox.className = "new-result";
+  }
 }
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -222,7 +293,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "11259" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "10601" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

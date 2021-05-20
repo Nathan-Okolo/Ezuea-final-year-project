@@ -87,7 +87,7 @@ h2 {
   margin: 0 auto;
   width: 75%;
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 1rem;
   margin-bottom: 40px;
 }
 
@@ -165,7 +165,7 @@ h2 {
 .btn-1.view-result:hover::before,
 .btn-1.clear-all:hover::before {
   opacity: 1;
-  transition: all 0.5s;
+  transition: all 0.05s;
 }
 
 .btn-1.view-result,
@@ -281,6 +281,7 @@ h2 {
 }
 
 .input-item {
+  position: relative;
   margin: 20px;
 }
 .input-item span,
@@ -307,7 +308,7 @@ input[type="number"],
 }
 #select-pth {
   appearance: none;
-  width: 100px;
+  width: 200px;
   background: transparent;
 }
 .select-dropdown select:active,
@@ -419,6 +420,17 @@ input[type="number"],
       font-size: 0.8rem;
     }
   }
+}
+
+#calculator p.error-message {
+  width: 100%;
+  font-size: 0.8rem;
+  position: absolute;
+  color: #df2935;
+  left: 0px;
+  font-weight: normal;
+  top: 102%;
+  text-align: left;
 }
 
 

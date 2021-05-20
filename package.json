@@ -4,7 +4,10 @@
   "description": "Solve the distance between two antennas",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "parcel:dev": "parcel index.html",
+    "parcel:dev:nocache": "parcel index.html --no-cache",
+    "parcel:build": "parcel build index.html --public-url ./"
   },
   "repository": {
     "type": "git",
