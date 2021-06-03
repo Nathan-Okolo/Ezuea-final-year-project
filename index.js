@@ -99,7 +99,7 @@ function isEmpty(value) {
 
 function isValueBetweenZeroOrOne(value) {
   if (value < 0 || value > 1) {
-    return `Value is greater than 1 or less than 0.`;
+    return `Value should be between 0 and 1`;
   } else if (value === "Empty field.") return value;
   else return "";
 }
@@ -150,15 +150,6 @@ function handleSignupFormSubmit(e) {
   }
 
   if (!impedenceMismatchError || !polarizationCoefficientError) {
-    console.log({
-      impedenceMismatch,
-      receiverEffiency,
-      thresholdPower,
-      receiverPower,
-      receiverGain,
-      transmitterGain,
-      polarizationCoefficient,
-    });
     const antennaDistance =
       (receiverEffiency / (4 * Math.PI)) *
       Math.sqrt(
