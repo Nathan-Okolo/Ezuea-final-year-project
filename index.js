@@ -43,7 +43,7 @@ function showResult(e) {
           "polarizationCoefficient-container"
         );
         const errorMessageText = document.createTextNode(
-          "Value is less than 0 or greater than 1."
+          "Value should be between 0 and 1."
         );
         errorMessageContainer.appendChild(errorMessageText);
         impedanceErrorContainer.appendChild(errorMessageContainer);
@@ -143,11 +143,9 @@ function handleSignupFormSubmit(e) {
     impedenceMismatchError.includes("Empty") ||
     !impedenceMismatchError
   ) {
-    // select the email form field message element
     const impedenceMismatchErrorMessageElement = document.querySelector(
       ".error-message.impedenceMismatchError"
     );
-    // show password error message to user
     impedenceMismatchErrorMessageElement.innerText = impedenceMismatchError;
   }
 
