@@ -128,7 +128,7 @@ function handleSignupFormSubmit(e) {
   impedenceMismatchError = isValueBetweenZeroOrOne(isEmpty(impedenceMismatch));
 
   if (
-    polarizationCoefficientError.includes("greater") ||
+    polarizationCoefficientError.includes("between 0 and 1") ||
     polarizationCoefficientError.includes("Empty") ||
     !polarizationCoefficientError
   ) {
@@ -139,7 +139,7 @@ function handleSignupFormSubmit(e) {
   }
 
   if (
-    impedenceMismatchError.includes("greater") ||
+    impedenceMismatchError.includes("between 0 and 1") ||
     impedenceMismatchError.includes("Empty") ||
     !impedenceMismatchError
   ) {
@@ -149,7 +149,7 @@ function handleSignupFormSubmit(e) {
     impedenceMismatchErrorMessageElement.innerText = impedenceMismatchError;
   }
 
-  if (!impedenceMismatchError || !polarizationCoefficientError) {
+  if (!impedenceMismatchError && !polarizationCoefficientError) {
     const antennaDistance =
       (receiverEffiency / (4 * Math.PI)) *
       Math.sqrt(
